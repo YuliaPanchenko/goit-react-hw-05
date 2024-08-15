@@ -1,0 +1,22 @@
+.link {
+  display: inline-block;
+  padding: 15px;
+  font-size: 18px;
+  color: black;
+  text-decoration: none;
+  transition: all, 0.3s;
+}
+
+.link:hover {
+  text-decoration: overline;
+}
+
+.linkActive {
+  color: rgba(248, 54, 54);
+}
+
+.nav {
+  margin-left: 50px;
+  border-bottom: 2px solid #ccc;
+  background-color: #f7f7f7;
+}
