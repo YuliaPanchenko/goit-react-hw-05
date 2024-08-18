@@ -1,8 +1,6 @@
-import { Link, NavLink, Route, Routes } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import css from "../Navigation/Navigation.module.css";
 import clsx from "clsx";
-import HomePage from "/src/pages/HomePage/HomePage";
-import MoviesPage from "/src/pages/MoviesPage/MoviesPage";
 
 const Navigation = () => {
   return (
@@ -27,16 +25,6 @@ const Navigation = () => {
           </NavLink>
         </nav>
       </header>
-      <main>
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/movies" element={<MoviesPage />} />
-          {/* <Route path="/movies/:movieId" element={<MovieDetailsPage />} />
-          <Route path="/movies/:movieId/cast" element={<MovieCast />} />
-          <Route path="/movies/:movieId/reviews" element={<MovieReviews />} />
-          <Route path="*" element={<NotFoundPage />} /> */}
-        </Routes>
-      </main>
     </>
   );
 };
