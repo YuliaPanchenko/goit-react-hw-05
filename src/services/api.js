@@ -16,6 +16,7 @@ export const requestAllFilms = async () => {
   const { data } = await axios.get(`${BASE_URL}`, {
     params: {
       api_key: API_KEY,
+      headers: options,
     },
   });
   return data.results;
