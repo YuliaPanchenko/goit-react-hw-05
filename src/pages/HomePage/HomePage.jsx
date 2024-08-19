@@ -29,7 +29,12 @@ const HomePage = () => {
         {films.map((film) => {
           return (
             <li className={css.filmItem} key={film.id}>
-              <Link to={`/movies/${film.id}`}>{film.title}</Link>
+              <Link
+                to={`/movies/${film.id}`}
+                state={{ from: location.pathname }}
+              >
+                {film.title}
+              </Link>
             </li>
           );
         })}

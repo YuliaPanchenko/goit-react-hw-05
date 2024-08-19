@@ -1,40 +1,56 @@
+import { Link, useSearchParams } from "react-router-dom";
+import MovieSearchBar from "../../components/MovieSearchBar/MovieSearchBar";
+import { requestBySearchFilms } from "../../services/api2";
 import css from "../MoviesPage/MoviesPage.module.css";
 import toast, { Toaster } from "react-hot-toast";
-
-const notify = () => toast("Please enter search term!");
+import { useEffect, useState } from "react";
 
 const MoviesPage = () => {
-  const handleSubmit = (evt) => {
-    evt.preventDefault();
-    const form = evt.target;
-    const film = form.elements.film.value;
+  const [films, setFilms] = useState([]);
+  const [searchValue, setSearchValue] = useState(null);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const queryValue = searchParams.get("query");
+  console.log(queryValue);
 
-    if (form.elements.film.value.trim() === "") {
-      notify();
-      return;
-    }
-    console.log(film);
+  useEffect(() => {
+    if (queryValue === null) return;
+    const fetchFilmsBySearchValue = async () => {
+      try {
+        const data = await requestBySearchFilms(queryValue);
+        setFilms(data.results);
+      } catch (err) {
+        console.log(err.message);
 
-    onSubmit(film);
-    form.reset();
+        // } finally {
+        //   setIsLoading(false);
+        // }
+      }
+    };
+
+    fetchFilmsBySearchValue();
+  }, [queryValue]);
+
+  const onSubmit = (film) => {
+    setSearchParams({
+      query: film,
+    });
+    setFilms([]);
+    // setPage(1);
   };
 
   return (
-    <header className={css.formHeader}>
-      <form className={css.form} onSubmit={handleSubmit}>
-        <input
-          className={css.formInput}
-          type="text"
-          name="film"
-          autoComplete="off"
-          autoFocus
-          placeholder="Search your film"
-        />
-        <button className={css.formBtn} type="submit">
-          Search
-        </button>
-      </form>
-    </header>
+    <>
+      <MovieSearchBar onSubmit={onSubmit} />
+      <ul>
+        {films.map((film) => (
+          <li key={film.id}>
+            <Link to={`/movies/${film.id}`} state={{ from: location.pathname }}>
+              {film.title}
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </>
   );
 };
 

@@ -1,13 +1,15 @@
 import MovieCast from "/src/components/MovieCast/MovieCast";
 import css from "../MovieDetailsPage/MovieDetailsPage.module.css";
-import { useEffect, useState } from "react";
-import { Link, Outlet, useParams } from "react-router-dom";
+import { useEffect, useRef, useState } from "react";
+import { Link, Outlet, useLocation, useParams } from "react-router-dom";
 import { requestFilmDetails } from "../../services/api2";
-import MovieReviews from "../../components/MovieReviews/MovieReviews";
 
 const MovieDetailsPage = () => {
   const { movieId } = useParams();
   const [filmDetails, setFilmDetails] = useState([]);
+  const location = useLocation();
+  console.log(location);
+  const backLink = useRef(location.state?.from ?? "/");
 
   useEffect(() => {
     const fechFilmDetails = async () => {
@@ -23,10 +25,11 @@ const MovieDetailsPage = () => {
 
   return (
     <div>
+      <Link to={backLink.current}>Go back</Link>
       <div className={css.filmDescription}>
         <img
           className={css.film}
-          src={`https://image.tmdb.org/t/p/w500/${filmDetails.backdrop_path}`}
+          src={`https://image.tmdb.org/t/p/w500/${filmDetails.poster_path}`}
           alt={filmDetails.title}
         />
         <h2 className={css.filmTitle}>{filmDetails.title}</h2>
