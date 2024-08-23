@@ -1,0 +1,50 @@
+.filmWrap {
+  margin-left: 40px;
+}
+
+.filmDescription {
+  display: flex;
+  align-items: flex-start;
+
+  margin-top: 20px;
+  padding: 20px;
+  border-bottom: 1px solid #ccc;
+}
+
+.film {
+  width: 300px;
+  height: auto;
+  border-radius: 10px;
+  margin-right: 20px;
+}
+
+.filmTitle {
+  font-size: 32px;
+  margin-bottom: 10px;
+}
+
+.filmOwerview {
+  font-size: 20px;
+  margin-top: 20px;
+  margin-bottom: 5px;
+}
+
+.filmOwText {
+}
+
+.filmGenres {
+  font-size: 20px;
+  margin-top: 20px;
+  margin-bottom: 5px;
+}
+
+.filmInfo {
+  padding: 0;
+  margin-top: 20px;
+  border-top: 1px solid #ccc;
+  padding-top: 20px;
+}
+
+.filmItem {
+  margin-bottom: 10px;
+}
