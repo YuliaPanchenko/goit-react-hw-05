@@ -1,8 +1,8 @@
 import css from "../HomePage/HomePage.module.css";
+import Loader from "../../components/Loader/Loader";
+import MovieList from "../../components/MovieList/MovieList";
 import { useEffect, useState } from "react";
 import { requestAllFilms } from "/src/services/api.js";
-import { Link } from "react-router-dom";
-import Loader from "../../components/Loader/Loader";
 
 const HomePage = () => {
   const [films, setFilms] = useState([]);
@@ -23,7 +23,6 @@ const HomePage = () => {
 
     fetchFilms();
   }, []);
-
   return (
     <>
       <ul className={css.filmsList}>
@@ -31,12 +30,7 @@ const HomePage = () => {
           return (
             <li className={css.filmItem} key={film.id}>
               {isLoading && <Loader />}
-              <Link
-                to={`/movies/${film.id}`}
-                state={{ from: location.pathname }}
-              >
-                {film.title}
-              </Link>
+              <MovieList id={film.id} title={film.title} />
             </li>
           );
         })}
