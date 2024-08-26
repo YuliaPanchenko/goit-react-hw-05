@@ -25,45 +25,11 @@ const HomePage = () => {
   }, []);
   return (
     <>
-      <ul className={css.filmsList}>
-        {films.map((film) => {
-          return (
-            <li className={css.filmItem} key={film.id}>
-              {isLoading && <Loader />}
-              <MovieList id={film.id} title={film.title} />
-            </li>
-          );
-        })}
-      </ul>
+      <h2 className={css.title}>Trending today</h2>
+      {isLoading && <Loader />}
+      <MovieList films={films} />
     </>
   );
 };
 
 export default HomePage;
-
-//  return (
-//    <ul className={css.filmsList}>
-//      {films.map((film) => {
-//        return (
-//          <li
-//            className={css.filmItem}
-//            key={film.id}
-
-//            // onClick={() => onImageClick(film)}
-//          >
-//            <MovieDetailsPage
-//              url={film.backdrop_path}
-//              title={film.title}
-//              score={film.vote_average}
-//              overview={film.overview}
-//              genres={film.genre_ids}
-//            />
-//          </li>
-//        );
-//      })}
-//    </ul>
-//  );
-
-{
-  /* <Link> to={`/movies/${film.id}`} </Link> */
-}

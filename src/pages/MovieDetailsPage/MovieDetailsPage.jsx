@@ -1,4 +1,3 @@
-import MovieCast from "/src/components/MovieCast/MovieCast";
 import css from "../MovieDetailsPage/MovieDetailsPage.module.css";
 import { useEffect, useRef, useState } from "react";
 import { Link, Outlet, useLocation, useParams } from "react-router-dom";

@@ -1,9 +1,9 @@
-import { Link, useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import MovieSearchBar from "../../components/MovieSearchBar/MovieSearchBar";
 import { requestBySearchFilms } from "../../services/api2";
-import css from "../MoviesPage/MoviesPage.module.css";
 import { useEffect, useState } from "react";
 import Loader from "../../components/Loader/Loader";
+import MovieList from "../../components/MovieList/MovieList";
 
 const MoviesPage = () => {
   const [films, setFilms] = useState([]);
@@ -43,16 +43,8 @@ const MoviesPage = () => {
   return (
     <>
       <MovieSearchBar onSubmit={onSubmit} />
-      <ul>
-        {films.map((film) => (
-          <li key={film.id}>
-            {isLoading && <Loader />}
-            <Link to={`/movies/${film.id}`} state={{ from: location.pathname }}>
-              {film.title}
-            </Link>
-          </li>
-        ))}
-      </ul>
+      {isLoading && <Loader />}
+      <MovieList films={films} />
     </>
   );
 };
